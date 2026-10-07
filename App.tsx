@@ -1,20 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Card } from './src/cards';
+import type { Sensitivity } from './src/hooks/useSnapDetector';
+import { CardPicker } from './src/screens/CardPicker';
+import { FakeCamera } from './src/screens/FakeCamera';
 
 export default function App() {
+  const [card, setCard] = useState<Card | null>(null);
+  const [sensitivity, setSensitivity] = useState<Sensitivity>('medium');
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <StatusBar style="light" hidden={card !== null} />
+      {card ? (
+        <FakeCamera card={card} sensitivity={sensitivity} onExit={() => setCard(null)} />
+      ) : (
+        <CardPicker sensitivity={sensitivity} onChangeSensitivity={setSensitivity} onPick={setCard} />
+      )}
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
