@@ -20,7 +20,9 @@ const WARMUP_SECONDS = 0.6;
  */
 export function useSnapDetector(enabled: boolean, sensitivity: Sensitivity, onSnap: () => void) {
   const onSnapRef = useRef(onSnap);
-  onSnapRef.current = onSnap;
+  useEffect(() => {
+    onSnapRef.current = onSnap;
+  });
   const state = useRef({ floor: 0.01, startedAt: -1 });
 
   const handleBuffer = (buffer: AudioStreamBuffer) => {

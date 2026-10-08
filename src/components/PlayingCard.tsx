@@ -13,7 +13,7 @@ export function PlayingCard({ card, width, simple }: Props) {
   const radius = width * 0.07;
 
   const corner = (
-    <View style={{ alignItems: 'center', width: width * 0.16 }}>
+    <View style={{ alignItems: 'center', width: width * 0.14 }}>
       <Text
         style={{
           color,
@@ -88,11 +88,12 @@ function CardCenter({ card, width, height }: { card: Card; width: number; height
     );
   }
 
-  const pip = width * 0.17;
-  const areaLeft = width * 0.27;
-  const areaW = width * 0.46;
-  const areaTop = height * 0.14;
-  const areaH = height * 0.72;
+  // Pip columns sit well inside the corner indices, like a standard deck.
+  const pip = width * 0.15;
+  const areaLeft = width * 0.31;
+  const areaW = width * 0.38;
+  const areaTop = height * 0.17;
+  const areaH = height * 0.66;
 
   return (
     <>

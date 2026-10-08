@@ -28,7 +28,7 @@
         "expo-camera",
         {
           "cameraPermission": "Allow Camera to use your camera.",
-          "microphonePermission": false,
+          "microphonePermission": "Allow Camera to use your microphone.",
           "recordAudioAndroid": false
         }
       ],
@@ -39,7 +39,15 @@
         }
       ],
       "expo-asset",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "enableSceneSupport": true
+          }
+        }
+      ]
     ]
   }
 }
